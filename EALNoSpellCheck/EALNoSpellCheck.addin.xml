@@ -1,0 +1,21 @@
+<Addin id="EALNoSpellCheck"
+	namespace="Tomboy"
+	name="EAL No Spell Check"
+	author="Villim Wong"
+	description="Disable spell check when East Asian Launguage"
+	category="Tools"
+	defaultEnabled="true"
+	version="0.1">
+
+	<Runtime>
+        <Import assembly="EALNoSpellCheck.dll" />
+	</Runtime>
+
+	<Dependencies>
+		<Addin id="Tomboy" version="0.7" />
+	</Dependencies>
+
+	<Extension path="/Tomboy/NoteAddins">
+		<NoteAddin type="Tomboy.EALNoSpellCheck.EALNoSpellCheckAddin" />
+	</Extension>
+</Addin>
