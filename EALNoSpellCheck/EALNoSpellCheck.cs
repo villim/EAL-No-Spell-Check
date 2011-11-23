@@ -3,29 +3,32 @@ using Tomboy;
 
 namespace Tomboy.EALNoSpellCheck
 {
-	public class EALNoSpellCheck : NoteAddin
+	public class EALNoSpellCheckAddin : NoteAddin
 	{
 	
 		NoteTag eal_tag;
 		
 		public override void Initialize ()
 		{
-			if (Note.TagTable.Lookup ("lang:eal") == null) {
-				eal_tag = new NoteTag ("lang:eal");
+			AddLanguageTag ();
+		}
+		
+		void AddLanguageTag ()
+		{
+			eal_tag = (NoteTag)Note.TagTable.Lookup ("language:eal");
+			
+			if (eal_tag == null) {
+				eal_tag = new NoteTag ("language:eal");
 				eal_tag.CanUndo = true;
 				eal_tag.CanGrow = true; 
-				eal_tag.CanSpellCheck = false;
+				eal_tag.CanSpellCheck = false; // Trun off spell check
 				Note.TagTable.Add (eal_tag);
-			} else {
-				eal_tag = (NoteTag)Note.TagTable.Lookup ("lang:eal");
 			}
 		}
 	
 		public override void Shutdown ()
 		{
-			// Remove the tag only if we installed it.
-			//if (cjk_tag != null)
-			//	Note.TagTable.Remove (cjk_tag);        
+			// Always keep eal_tag   
 		}
 
 		public override void OnNoteOpened ()
@@ -37,7 +40,7 @@ namespace Tomboy.EALNoSpellCheck
 
 		void OnMenuItemActivated (object sender, EventArgs args)
 		{
-			// Logger.Log ("Activated 'Insert date and time' menu item");
+			// Do nothing
 		}
 
 		void OnInsertText (object sender, Gtk.InsertTextArgs args)
@@ -59,7 +62,6 @@ namespace Tomboy.EALNoSpellCheck
                     ref end, 
                     512 /* XXX */,
                     eal_tag);
-
 			Buffer.RemoveTag (eal_tag, start, end);
 
 			MatchEAL m = new MatchEAL (start.GetText (end));
@@ -78,7 +80,7 @@ namespace Tomboy.EALNoSpellCheck
 		{
 			string text;
 
-			public MatchEAL(string text)
+			public MatchEAL (string text)
 			{
 				this.text = text;
 			}
@@ -111,6 +113,7 @@ namespace Tomboy.EALNoSpellCheck
 				else
 					return false;
 			}
+			
 			public class EALGroup
 			{
 				public int Start;

@@ -1,3 +1,22 @@
 This is a add-in for Tomboy to disable spell check when East Asian Language
-gmcs -debug -out:EALNoSpellCheck.dll -target:library -pkg:tomboy-addins -r:Mono.Posix EALNoSpellCheck.cs -resource:EALNoSpellCheck.addin.xml
 
+1. How to develop:
+
+Here's the official document about how to "Developing a note add-in"
+http://live.gnome.org/Tomboy/HowToCreateAddins#The_metadata_file
+
+
+I developing on Ubuntu 11.10,configure Dot Net developing enviroment:
+http://mohangk.org/blog/2009/10/tomboy-addin-monodevelop/
+
+Have to download Tomboy source : http://git.gnome.org/browse/tomboy
+
+
+
+
+2. How to compile DLL file:
+gmcs -debug -out:EALNoSpellCheck.dll -target:library -pkg:gtk-sharp-2.0 -pkg:tomboy-addins -r:Mono.Posix EALNoSpellCheck.cs -resource:EALNoSpellCheck.addin.xml
+
+3. How to install:
+move generated EALNoSpellCheck.dll to /usr/lib/tomboy/addins/
+configure tomboy Preferrences -> Add-ins -> Tools -> Enable 'EAL No Spell Check'
