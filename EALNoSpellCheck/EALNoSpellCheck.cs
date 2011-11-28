@@ -58,6 +58,8 @@ namespace Tomboy.EALNoSpellCheck
 		
 		void ApplyEALToBlock (Gtk.TextIter start, Gtk.TextIter end)
 		{
+			AddLanguageTag ();
+			
 			NoteBuffer.GetBlockExtents (ref start,
                     ref end, 
                     512 /* XXX */,

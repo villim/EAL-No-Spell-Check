@@ -5,14 +5,14 @@
 	description="Disable spell check when East Asian Launguage"
 	category="Tools"
 	defaultEnabled="true"
-	version="0.1">
+	version="0.2">
 
 	<Runtime>
         <Import assembly="EALNoSpellCheck.dll" />
 	</Runtime>
 
 	<Dependencies>
-		<Addin id="Tomboy" version="0.7" />
+		<Addin id="Tomboy" version="0.10" />
 	</Dependencies>
 
 	<Extension path="/Tomboy/NoteAddins">
